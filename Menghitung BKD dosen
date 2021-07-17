@@ -1,0 +1,220 @@
+#input untuk data diri
+def profil(nama, prodi, fakultas,PT,TA):
+  #data_diri(nama, prodi, fakultas, PT, TA)
+  print('Nama Dosen: '+ nama + ".")
+  print('Prodi: ' + prodi + ".")
+  print('Fakultas: ' + fakultas + ".")
+  print('Perguruan Tinggi: ' + PT + ".")
+  print('Tahun Ajaran: ' + TA + ".")
+ 
+ def kesimpulan():
+  #Operasi SKS pendidikan
+  if aa<=10:
+    sks_bkd1=aa*0.5
+  elif aa>10:
+    sks_bkd1=(10*0.5)+(((aa-10)/2)*0.25)
+  #print(sks_bkd1)
+  if ab == 'ada':
+    sks_bkd2=1
+  elif ab =='tidak ada':
+    sks_bkd2=0
+  #print(sks_bkd2)
+  if ac == 'ada':
+    sks_bkd3=1
+  elif ac =='tidak ada':
+    sks_bkd3=0
+  if ad == 'ada':
+    sks_bkd4=1
+  elif ad =='tidak ada':
+    sks_bkd4=0
+  if ae == 'ada':
+    sks_bkd5=1
+  elif ae =='tidak ada':
+    sks_bkd5=0
+  if af == 'ada':
+    sks_bkd6=1
+  elif af =='tidak ada':
+    sks_bkd6=0
+  if ag == 'ada':
+    sks_bkd7=0.5
+  elif ag =='tidak ada':
+    sks_bkd7=0
+  if ah == 'ada':
+    sks_bkd8=2
+  elif ah =='tidak ada':
+    sks_bkd8=0
+  sks_bkd9= ai * 5
+  sks_bkd10= aj * 3
+  bkd_1= sks_bkd1 + sks_bkd2 + sks_bkd3 + sks_bkd4 + sks_bkd5
+  bkd_2= sks_bkd6 + sks_bkd7 + sks_bkd8 + sks_bkd9 + sks_bkd10
+  bkd_pendidikan= bkd_1 + bkd_2
+  if bkd_pendidikan > 0:
+    print("Pendidikan | Kinerja= %f Memenuhi" %bkd_pendidikan)
+    kesimpulan_a=1
+  elif bkd_pendidikan <= 0:
+    print("Pendidikan | Kinerja=%f Tidak Memenuhi"%bkd_pendidikan)
+    kesimpulan_a=0
+  #kesimpulan kedua
+  sks_bkd11= ba * 12
+  sks_bkd12= bb * 10
+  sks_bkd13= bc * 6
+  sks_bkd14= bd * 5
+  sks_bkd15= be * 8
+  sks_bkd16= bf * 6
+  bkd_3= sks_bkd11 + sks_bkd12 + sks_bkd13 + sks_bkd14
+  bkd_penelitian= sks_bkd15 + sks_bkd16 + bkd_3
+  if bkd_penelitian > 0:
+    print("Penelitian | Kinerja=%f Memenuhi" %bkd_penelitian)
+    kesimpulan_b=1
+  elif bkd_penelitian <= 0:
+    print("Penelitian | Kinerja=%f Tidak Memenuhi"%bkd_penelitian)
+    kesimpulan_b=0
+  #kesimpulan ketiga
+  sks_bkd_1= ca * 2
+  sks_bkd_2= cb * 3
+  sks_bkd_3= cc * 2
+  sks_bkd_4= cd * 1
+  sks_bkd_5= ce * 2
+  bkd_4= sks_bkd_1 + sks_bkd_2 + sks_bkd_3
+  bkd_pengabdian= sks_bkd_4 + sks_bkd_5 + bkd_4
+  if bkd_pengabdian > 0:
+    print("Pengabdian | Kinerja=%f Memenuhi" %bkd_pengabdian)
+    kesimpulan_c=1
+  elif bkd_pengabdian <= 0:
+    print("Pengabdian | Kinerja=%f Tidak Memenuhi"%bkd_pengabdian)
+    kesimpulan_c=0
+  #Penunjang
+  if da == 'ada':
+    sks_bkd_x= 1.5
+  elif da =='tidak ada':
+    sks_bkd_x= 0
+  if db == 'ada':
+    sks_bkd_7= 1
+  elif db =='tidak ada':
+    sks_bkd_7= 0
+  if dc == 'ada':
+    sks_bkd_8= 2
+  elif dc =='tidak ada':
+    sks_bkd_8= 0
+  if dd == 'ada':
+    sks_bkd_9= 1
+  elif dd =='tidak ada':
+    sks_bkd_9= 0
+  if de == 'ada':
+    sks_bkd_10= 2
+  elif de =='tidak ada':
+    sks_bkd_10= 0
+  if df == 'ada':
+    sks_bkd_11= 0.5
+  elif df =='tidak ada':
+    sks_bkd_11= 0
+  if dg == 'ada':
+    sks_bkd_12= 2
+  elif dg =='tidak ada':
+    sks_bkd_12= 0
+  if dh == 'ada':
+    sks_bkd_13= 0.5
+  elif dh =='tidak ada':
+    sks_bkd_13= 0
+  bkd_5= sks_bkd_x + sks_bkd_7 + sks_bkd_8 + sks_bkd_9
+  bkd_6= bkd_5 + sks_bkd_10 + sks_bkd_10 + sks_bkd_11
+  bkd_penunjang= bkd_6 + sks_bkd_12 + sks_bkd_13
+  #kesimpulan keempat
+  kesimpulan_1= bkd_pendidikan + bkd_penelitian
+  if kesimpulan_1 >=9:
+    print("Pendidikan + penelitian | Kinerja=%f Memenuhi"%kesimpulan_1)
+    kesimpulan_d=1
+  elif kesimpulan_1 <9:
+    print("Pendidikan + penelitian | Kinerja=%f Tidak Memenuhi"%kesimpulan_1)
+    kesimpulan_d=0
+  #kesimpulan kelima
+  kesimpulan_2= bkd_pengabdian + bkd_penunjang
+  if kesimpulan_2 >= 3:
+    print("Pengabdian + penunjang | Kinerja=%f Memenuhi"%kesimpulan_2)
+    kesimpulan_e=1
+  elif kesimpulan_2 <3:
+    print("Pengabdian + penunjang | Kinerja=%f Tidak Memenuhi"%kesimpulan_2)
+    kesimpulan_e=0
+  #kesimpulan keenam
+  kesimpulan_3= kesimpulan_1 + kesimpulan_2
+  kesimpulan_X=0
+  if kesimpulan_3 >=12 and kesimpulan_3 <=16:
+    print("Total Kinerja | Kinerja=%f Memenuhi"%kesimpulan_3)
+    kesimpulan_X=1
+  elif kesimpulan_3 <12 and kesimpulan_3 >16:
+    print("Total Kinerja | Kinerja=%f Tidak Memenuhi"%kesimpulan_3)
+    kesimpulan_X=0
+  kesimpulan_4= kesimpulan_a + kesimpulan_b + kesimpulan_c + kesimpulan_d
+  kesimpulan_akhir= kesimpulan_4 + kesimpulan_e + kesimpulan_X
+  if kesimpulan_akhir == 6:
+    print("Memenuhi Syarat UU")
+  elif kesimpulan_akhir <6:
+    print("tidak Memenuhi Syarat UU")
+    
+def fungsi():
+  #menampilkan data diri
+  profil(a,b,c,d,e)
+  #kesimpulan
+  kesimpulan()
+  
+#input untuk data diri
+print("Masukkan data diri")
+a=input("Nama Dosen: ")
+b=input("Prodi: ")
+c=input("Fakultas: ")
+d=input("Perguruan Tinggi: ")
+e=input("Tahun Ajaran: ")
+ulang='y'
+while ulang == 'y':
+  #input pelaksanaan pendidikan
+  print("pelaksanaan pendidikan")
+  aa=int(input("Melaksanakan Perkuliahan: "))
+  ab=input("Membimbing Mahasiswa Seminar (ada/tidak ada): ")
+  ac=input("Membimbing KP dan KKN (ada/tidak ada): ")
+  ad=input("Membimbing skripsi pembimbing utama (ada/tidak ada): ")
+  ae=input("Membimbing skripsi pembimbing (ada/tidak ada): ")
+  af=input("Ketua penguji skripsi (ada/tidak ada): ")
+  ag=input("Anggota penguji skripsi (ada/tidak ada): ")
+  ah=input("Melakukan Bimbingan Akademik (DPA) (ada/tidak ada): ")
+  ai=int(input("Membuat buku ajar: "))
+  aj=int(input("Membuat modul praktikum: "))
+  #pelaksanaan penelitian
+  print("pelaksanaan penelitian")
+  ba=int(input("Publikasi Jurnal Internasional bereputasi: "))
+  bb=int(input("Publikasi Jurnal Internasional tidak bereputasi: "))
+  bc=int(input("Publikasi Jurnal nasional terakreditasi: "))
+  bd=int(input("Publikasi Jurnal nasional tidak terakreditasi: "))
+  be=int(input("Publikasi pada seminar International: "))
+  bf=int(input("Publikasi pada seminar nasional: "))
+  #Pelaksanaan Pengabdian
+  print("Pelaksanaan Pengabdian")
+  ca=int(input("Mengembangkan hasil pendidikan dan penelitian: "))
+  cb=int(input("Memberikan pelatihan/penyuluhan/penataran/" + 
+          "ceramah pada masyarakat (internasional): " ))
+  cc=int(input("Memberikan pelatihan/penyuluhan/penataran/" + 
+          "ceramah pada masyarakat (nasional): " ))
+  cd=int(input("Memberikan pelatihan/penyuluhan/penataran/" + 
+          "ceramah pada masyarakat (lokal): "))
+  ce=int(input("Membuat/ menulis karya pengabdian: "))
+  #penunjang
+  print("penunjang")
+  da=input("Menjadi anggota dalam suatu panitia/ badan" + 
+      " pada perguruan tinggi (sebagai ketua) (ada/tidak ada): ")
+  db=input("Menjadi anggota dalam suatu panitia/ badan" +
+      " pada perguruan tinggi (sebagai anggota) (ada/tidak ada): ")
+  dc=input("Menjadi anggota dalam suatu panitia/ badan" +
+      " pada lembaga pemerintahan (sebagai ketua) (ada/tidak ada): ")
+  dd=input("Menjadi anggota dalam suatu panitia/ badan" +
+      " pada lembaga pemerintahan (sebagai anggota) (ada/tidak ada): ")
+  de=input("Menjadi anggota organisasi profesi dosen" +
+      " tingkat internasional sebagai pengurus (ada/tidak ada): ")
+  df=input("Menjadi anggota organisasi profesi dosen tingkat" +
+      " internasional sebagai anggota (ada/tidak ada): ")
+  dg=input("Menjadi anggota organisasi profesi dosen tingkat" +
+      " nasional sebagai pengurus (ada/tidak ada): ")
+  dh=input("Menjadi anggota organisasi profesi dosen tingkat" +
+      " nasional sebagai anggota (ada/tidak ada): ")
+  fungsi()
+  ulang=input("masukkan y jika ingin revisi" +
+              " masukkan n jika tidak: ")
+  ulang=ulang.lower()
