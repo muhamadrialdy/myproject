@@ -1,0 +1,103 @@
+https://www.kaggle.com/sshikamaru/fruit-recognition
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras.optimizers import RMSprop
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+import matplotlib.pyplot as plt
+import zipfile,os
+local_zip = '/content/archive (21).zip'
+zip_ref = zipfile.ZipFile(local_zip, 'r')
+zip_ref.extractall('/content/')
+zip_ref.close
+utama='/content/train/train/'
+train_datagen= ImageDataGenerator(
+                   rescale = 1./255,
+                   rotation_range=20,
+                   shear_range=0.2,
+                   zoom_range=0.2,
+                   horizontal_flip=True,
+                   validation_split=0.2,
+                   fill_mode= 'nearest')
+test_datagen= ImageDataGenerator(
+                   rescale = 1./255,
+                   rotation_range=20,
+                   shear_range=0.2,
+                   zoom_range=0.2,
+                   horizontal_flip=True,
+                   validation_split=0.2,
+                   fill_mode= 'nearest')
+                   train_generator = train_datagen.flow_from_directory(
+    utama,
+    target_size=(100,100),
+    subset='training',
+    class_mode='categorical')
+validation_generator = test_datagen.flow_from_directory(
+    utama,
+    target_size=(100,100),
+    subset='validation',
+    class_mode='categorical')
+    print(train_generator.class_indices)
+    model = tf.keras.models.Sequential([
+    #konvolusi pertama
+    tf.keras.layers.Conv2D(32,(3,3),activation='relu',input_shape=(100,100,3)),
+    tf.keras.layers.MaxPooling2D(2,2),
+    #konvolusi ke 2
+    tf.keras.layers.Conv2D(64,(3,3),activation = 'relu'),
+    tf.keras.layers.MaxPooling2D(2,2),
+    #konvolusi ke 3
+    tf.keras.layers.Conv2D(256,(3,3), activation = 'relu'),
+    tf.keras.layers.MaxPooling2D(2,2),
+    #konvolusi ke 4
+    tf.keras.layers.Conv2D(128,(3,3),activation= 'relu'),
+    tf.keras.layers.MaxPooling2D(2,2),
+    #meratakan hasil untuk dilatih dengan DNN
+    tf.keras.layers.Flatten(),
+    #tf.keras.layers.Dropout(0.5),
+    #128 neuron untuk hidden layer
+    tf.keras.layers.Dense(128, activation = 'relu'),
+    tf.keras.layers.Dense(33, activation='softmax')
+])
+stop=0.98
+class interupsi(tf.keras.callbacks.Callback):
+  def on_epoch_end(self, epoch, logs={}):
+    if(logs.get('accuracy') > stop):
+      print("\n udah lebih dari %2.3f%% accuracy, gausah dilanjut."%(stop*100))
+      self.model.stop_training = True
+callbacks = interupsi()
+#compile model
+model.compile(loss='categorical_crossentropy',
+              optimizer='rmsprop',
+              metrics=['accuracy'])
+#pelatihan dengan backpropagation
+tampilin=model.fit_generator(
+    train_generator,
+    epochs=50,
+    validation_data = validation_generator,
+    callbacks=[callbacks],
+    verbose=1)
+acc = tampilin.history['accuracy']
+val_acc = tampilin.history['val_accuracy']
+loss = tampilin.history['loss']
+val_loss = tampilin.history['val_loss']
+
+epochs = range(1, len(acc) + 1)
+ 
+plt.plot(epochs, acc, 'r', label='Training accuracy')
+plt.plot(epochs, val_acc, 'b', label='Test accuracy')
+plt.title('Training and Test accuracy')
+plt.legend()
+ 
+plt.figure()
+ 
+plt.plot(epochs, loss, 'r', label='Training loss')
+plt.plot(epochs, val_loss, 'b', label='Test loss')
+plt.title('Training and Test loss')
+plt.legend()
+ 
+plt.show()
+
+converter = tf.lite.TFLiteConverter.from_keras_model(model)
+tflite_model = converter.convert()
+
+with tf.io.gfile.GFile('model.tflite', 'wb') as f:
+  f.write(tflite_model)
